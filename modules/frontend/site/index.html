@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serverless Task App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Serverless Task App</h1>
+    <div id="user-bar">
+      <span id="user-email"></span>
+      <button id="login-btn" type="button">Sign in</button>
+      <button id="logout-btn" type="button" hidden>Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="signed-out">
+      <p>Sign in with Amazon Cognito to manage your tasks. Each account only sees its own tasks.</p>
+    </section>
+
+    <section id="signed-in" hidden>
+      <form id="task-form">
+        <input id="task-title" type="text" maxlength="200" placeholder="New task" required autocomplete="off">
+        <button type="submit">Add</button>
+      </form>
+      <ul id="task-list"></ul>
+      <p id="empty" hidden>No tasks yet.</p>
+    </section>
+
+    <section class="debug">
+      <h2>Last API call</h2>
+      <pre id="last-call">None yet</pre>
+    </section>
+
+    <section class="tiers">
+      <h2>How this page works</h2>
+      <ol>
+        <li><b>Presentation:</b> these files come from a private S3 bucket through CloudFront over HTTPS.</li>
+        <li><b>Authentication:</b> sign-in happens on the Cognito hosted page, which returns a token to this page.</li>
+        <li><b>Application:</b> the page sends the token to API Gateway, which checks it and invokes Lambda.</li>
+        <li><b>Data:</b> Lambda reads and writes your tasks in DynamoDB.</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

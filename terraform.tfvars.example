@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars to override defaults. Everything here is optional.
+
+# Get an email when a CloudWatch alarm fires (you must confirm the subscription email)
+# alert_email = "you@example.com"
+
+# region             = "us-west-1"
+# log_retention_days = 14
