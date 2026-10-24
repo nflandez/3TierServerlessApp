@@ -77,17 +77,17 @@ resource "aws_cloudwatch_dashboard" "this" {
   dashboard_body = jsonencode({
     widgets = [
       {
-        type       = "metric"
-        x          = 0
-        y          = 0
-        width      = 12
-        height     = 6
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
         properties = {
-          title   = "API Gateway requests and errors"
-          region  = var.region
-          view    = "timeSeries"
-          stat    = "Sum"
-          period  = 60
+          title  = "API Gateway requests and errors"
+          region = var.region
+          view   = "timeSeries"
+          stat   = "Sum"
+          period = 60
           metrics = [
             ["AWS/ApiGateway", "Count", "ApiId", var.api_id, { label = "Requests" }],
             ["AWS/ApiGateway", "4xx", "ApiId", var.api_id, { label = "4xx (client / auth errors)" }],
@@ -96,16 +96,16 @@ resource "aws_cloudwatch_dashboard" "this" {
         }
       },
       {
-        type       = "metric"
-        x          = 12
-        y          = 0
-        width      = 12
-        height     = 6
+        type   = "metric"
+        x      = 12
+        y      = 0
+        width  = 12
+        height = 6
         properties = {
-          title   = "API Gateway latency (ms)"
-          region  = var.region
-          view    = "timeSeries"
-          period  = 60
+          title  = "API Gateway latency (ms)"
+          region = var.region
+          view   = "timeSeries"
+          period = 60
           metrics = [
             ["AWS/ApiGateway", "Latency", "ApiId", var.api_id, { stat = "Average", label = "Average" }],
             ["AWS/ApiGateway", "Latency", "ApiId", var.api_id, { stat = "p90", label = "p90" }],
@@ -113,17 +113,17 @@ resource "aws_cloudwatch_dashboard" "this" {
         }
       },
       {
-        type       = "metric"
-        x          = 0
-        y          = 6
-        width      = 12
-        height     = 6
+        type   = "metric"
+        x      = 0
+        y      = 6
+        width  = 12
+        height = 6
         properties = {
-          title   = "Lambda invocations and errors"
-          region  = var.region
-          view    = "timeSeries"
-          stat    = "Sum"
-          period  = 60
+          title  = "Lambda invocations and errors"
+          region = var.region
+          view   = "timeSeries"
+          stat   = "Sum"
+          period = 60
           metrics = [
             ["AWS/Lambda", "Invocations", "FunctionName", var.function_name],
             ["AWS/Lambda", "Errors", "FunctionName", var.function_name],
@@ -132,16 +132,16 @@ resource "aws_cloudwatch_dashboard" "this" {
         }
       },
       {
-        type       = "metric"
-        x          = 12
-        y          = 6
-        width      = 12
-        height     = 6
+        type   = "metric"
+        x      = 12
+        y      = 6
+        width  = 12
+        height = 6
         properties = {
-          title   = "Lambda duration (ms)"
-          region  = var.region
-          view    = "timeSeries"
-          period  = 60
+          title  = "Lambda duration (ms)"
+          region = var.region
+          view   = "timeSeries"
+          period = 60
           metrics = [
             ["AWS/Lambda", "Duration", "FunctionName", var.function_name, { stat = "Average", label = "Average" }],
             ["AWS/Lambda", "Duration", "FunctionName", var.function_name, { stat = "Maximum", label = "Max (includes cold starts)" }],
@@ -149,17 +149,17 @@ resource "aws_cloudwatch_dashboard" "this" {
         }
       },
       {
-        type       = "metric"
-        x          = 0
-        y          = 12
-        width      = 12
-        height     = 6
+        type   = "metric"
+        x      = 0
+        y      = 12
+        width  = 12
+        height = 6
         properties = {
-          title   = "DynamoDB capacity used"
-          region  = var.region
-          view    = "timeSeries"
-          stat    = "Sum"
-          period  = 60
+          title  = "DynamoDB capacity used"
+          region = var.region
+          view   = "timeSeries"
+          stat   = "Sum"
+          period = 60
           metrics = [
             ["AWS/DynamoDB", "ConsumedReadCapacityUnits", "TableName", var.table_name],
             ["AWS/DynamoDB", "ConsumedWriteCapacityUnits", "TableName", var.table_name],
@@ -167,28 +167,28 @@ resource "aws_cloudwatch_dashboard" "this" {
         }
       },
       {
-        type       = "metric"
-        x          = 12
-        y          = 12
-        width      = 12
-        height     = 6
+        type   = "metric"
+        x      = 12
+        y      = 12
+        width  = 12
+        height = 6
         properties = {
-          title   = "CloudFront requests (global)"
-          region  = "us-east-1" # CloudFront is global and always reports metrics in us-east-1
-          view    = "timeSeries"
-          stat    = "Sum"
-          period  = 300
+          title  = "CloudFront requests (global)"
+          region = "us-east-1" # CloudFront is global and always reports metrics in us-east-1
+          view   = "timeSeries"
+          stat   = "Sum"
+          period = 300
           metrics = [
             ["AWS/CloudFront", "Requests", "DistributionId", var.cloudfront_dist_id, "Region", "Global"],
           ]
         }
       },
       {
-        type       = "log"
-        x          = 0
-        y          = 18
-        width      = 24
-        height     = 6
+        type   = "log"
+        x      = 0
+        y      = 18
+        width  = 24
+        height = 6
         properties = {
           title  = "Recent Lambda log lines"
           region = var.region
