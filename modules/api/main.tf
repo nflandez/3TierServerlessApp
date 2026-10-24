@@ -135,7 +135,7 @@ resource "aws_apigatewayv2_stage" "default" {
   # One JSON line per request, including who called and why auth failed
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.api_access.arn
-    format          = jsonencode({
+    format = jsonencode({
       requestId   = "$context.requestId"
       time        = "$context.requestTime"
       ip          = "$context.identity.sourceIp"
