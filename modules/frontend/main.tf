@@ -125,7 +125,7 @@ resource "aws_s3_object" "config" {
   bucket       = aws_s3_bucket.site.id
   key          = "config.js"
   content_type = "application/javascript"
-  content      = templatefile("${path.module}/site/config.js.tpl", {
+  content = templatefile("${path.module}/site/config.js.tpl", {
     api_url        = var.api_url
     cognito_domain = var.cognito_domain
     client_id      = var.client_id
